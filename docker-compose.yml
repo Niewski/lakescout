@@ -1,0 +1,23 @@
+# Local development stack. The production stack (Caddy + app + worker) lives in
+# docker-compose.prod.yml; here we only run the database and let the app run from
+# the IDE or ./mvnw spring-boot:run against it.
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: lakescout-db
+    environment:
+      POSTGRES_DB: lakescout
+      POSTGRES_USER: lakescout
+      POSTGRES_PASSWORD: lakescout
+    ports:
+      - "5432:5432"
+    volumes:
+      - lakescout-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lakescout -d lakescout"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  lakescout-db-data:

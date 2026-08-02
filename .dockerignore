@@ -1,0 +1,13 @@
+**/node_modules
+**/dist
+**/target
+**/.git
+**/.github
+**/.idea
+**/.vscode
+infra/
+seed/out/
+docs/
+*.md
+!backend/**
+!frontend/**

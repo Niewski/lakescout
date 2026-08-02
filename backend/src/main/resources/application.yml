@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: lakescout
+
+  datasource:
+    url: ${LAKESCOUT_DB_URL:jdbc:postgresql://localhost:5432/lakescout}
+    username: ${LAKESCOUT_DB_USER:lakescout}
+    password: ${LAKESCOUT_DB_PASSWORD:lakescout}
+
+  jpa:
+    # Flyway owns the schema. Hibernate only checks that entities match it.
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+lakescout:
+  # Worker role is toggled per-process so the API and the enrichment worker can run
+  # as separate containers from one image (see docker-compose.prod.yml).
+  worker:
+    enabled: ${LAKESCOUT_WORKER_ENABLED:true}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+logging:
+  level:
+    com.lakescout: INFO

@@ -1,0 +1,11 @@
+# Normalize to LF in the repository. The build runs on Linux (CI and the ARM container),
+# so shell scripts and the Maven wrapper must not pick up CRLF from a Windows checkout.
+* text=auto eol=lf
+
+*.cmd    text eol=crlf
+*.bat    text eol=crlf
+
+*.png    binary
+*.jpg    binary
+*.ico    binary
+*.jar    binary

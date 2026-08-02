@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  /* Decision bands from the Dashboard sheet: >=90 exceptional, 80-89.9 strong,
+     70-79.9 tour with caveats, <70 likely pass. Scores are colour-coded by band
+     everywhere they appear, so the thresholds live here rather than in components. */
+  --color-band-exceptional: oklch(0.72 0.16 155);
+  --color-band-strong: oklch(0.78 0.14 130);
+  --color-band-tour: oklch(0.82 0.14 85);
+  --color-band-pass: oklch(0.70 0.10 40);
+  --color-band-excluded: oklch(0.62 0.02 260);
+}
+
+:root {
+  color-scheme: light dark;
+}
