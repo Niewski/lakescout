@@ -9,6 +9,12 @@ variable "alert_email" {
   type        = string
 }
 
+variable "admin_user_name" {
+  description = "IAM user that replaces the account root user for day-to-day provisioning."
+  type        = string
+  default     = "lakescout-admin"
+}
+
 variable "monthly_budget_usd" {
   description = "Hard ceiling for monthly spend. The deployment is designed to run at roughly $15-20."
   type        = number
